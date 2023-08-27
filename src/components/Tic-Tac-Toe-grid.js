@@ -48,9 +48,19 @@ const TicTacToegrid = (props) => {
 
       // Show toast notification when someone wins
 
-      toast.success("Someone won the game!", {
-        duration: 5000,
-      });
+      // toast.success(`${winner} ${Move} won the game!`, {
+      //   duration: 5000,
+      // });
+
+      if (Move == winner) {
+        toast.success(`You won the game!`, {
+          duration: 10000,
+        });
+      } else {
+        toast.error(`You lost the game!`, {
+          duration: 10000,
+        });
+      }
 
       setButtonsDisabled(true);
     }
@@ -143,7 +153,7 @@ const TicTacToegrid = (props) => {
   // function handleMove() {
   //   // write logic to handel move
   // }
-
+  const notify = () => toast("Here is your toast.");
   return (
     Move && (
       <div>
@@ -164,6 +174,10 @@ const TicTacToegrid = (props) => {
           <button className="box" id="box9"></button>
         </div>
         <Toaster position="top-right" />
+        {/* <div>
+          <button onClick={notify}>Make me a toast</button>  
+        <Toaster />  
+          </div> */}
       </div>
     )
   );
