@@ -1,4 +1,6 @@
+import React from "react";
 import { Home } from "./pages/home";
+import { Redirect } from "./pages/redirect";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
     >
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Redirect location="/" />} />
       </Routes>
     </div>
   );

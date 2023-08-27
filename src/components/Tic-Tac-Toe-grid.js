@@ -90,6 +90,26 @@ const TicTacToegrid = (props) => {
         });
       }
 
+      if (winner || draw) {
+        setTimeout(() => {
+          toast.loading("Redirecting to Home , Game Ended", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+          setTimeout(() => {
+            console.log("Navigating to home");
+            navigate("/home");
+          }, 3000);
+        }, 8000);
+      }
+
       setButtonsDisabled(true);
     }
   }, [gameGrid]);
