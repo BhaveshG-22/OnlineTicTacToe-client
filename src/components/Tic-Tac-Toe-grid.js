@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { VictoryMessages, LossMessages, DrawMessages } from "./gameMessages";
 import "../components/ChatUI.css";
-import toast, { Toaster } from "react-hot-toast";
-// import "react-hot-toast/dist/index.css";
+import { Toaster } from "react-hot-toast";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TicTacToegrid = (props) => {
   const navigate = useNavigate();
@@ -41,7 +44,7 @@ const TicTacToegrid = (props) => {
   useEffect(() => {
     const result = checkWin(gameGrid);
     if (result) {
-      const { sequence, winner } = result;
+      const { sequence, winner, draw } = result;
       console.log("Someone Woooooooon!");
       console.log("Winning Sequence:", sequence);
       console.log("Winner:", winner);
@@ -53,12 +56,37 @@ const TicTacToegrid = (props) => {
       // });
 
       if (Move == winner) {
-        toast.success(`You won the game!`, {
-          duration: 10000,
+        toast.success(VictoryMessages, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else if (draw) {
+        toast.info(DrawMessages, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
       } else {
-        toast.error(`You lost the game!`, {
-          duration: 10000,
+        toast.error(LossMessages, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
       }
 
@@ -83,6 +111,11 @@ const TicTacToegrid = (props) => {
       if (grid[a] && grid[a] === grid[b] && grid[b] === grid[c]) {
         return { sequence, winner: grid[a] };
       }
+    }
+
+    // Check for a draw
+    if (!grid.includes(null)) {
+      return { draw: true };
     }
 
     return null; // No winner
@@ -174,6 +207,7 @@ const TicTacToegrid = (props) => {
           <button className="box" id="box9"></button>
         </div>
         <Toaster position="top-right" />
+        <ToastContainer />
         {/* <div>
           <button onClick={notify}>Make me a toast</button>  
         <Toaster />  
