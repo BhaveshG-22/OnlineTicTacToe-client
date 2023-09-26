@@ -97,7 +97,8 @@ import GeneratedIDMessage from "../components/IDviewer";
 import Main from "./main";
 import { io } from "socket.io-client";
 
-const socket = io.connect("https://onlinetictactoe-server.onrender.com/");
+// const socket = io.connect("https://onlinetictactoe-server.onrender.com/");
+const socket = io.connect("https://trial1.adaptable.app/");
 
 export const Home = () => {
   const [showMain, setShowMain] = useState(false);
