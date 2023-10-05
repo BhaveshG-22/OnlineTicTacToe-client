@@ -6,10 +6,10 @@ import Main from "./main";
 import { io } from "socket.io-client";
 
 // const socket = io.connect("https://onlinetictactoe-server.onrender.com/");
-// const socket = io.connect("https://trial1.adaptable.app/");
-const socket = io.connect(
-  "https://vercel.com/bhaveshg-22/online-tic-tac-toe-server"
-);
+const socket = io.connect("https://trial1.adaptable.app/");
+// const socket = io.connect(
+//   "https://vercel.com/bhaveshg-22/online-tic-tac-toe-server"
+// );
 
 export const Home = () => {
   const [showMain, setShowMain] = useState(false);
